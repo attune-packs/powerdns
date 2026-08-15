@@ -1,0 +1,18 @@
+{
+  "upstream": {
+    "repository": "https://github.com/StackStorm-Exchange/stackstorm-powerdns",
+    "version": "2.0.2",
+    "revision": "13879e0e66b29a466d82c1077a1d4abde69c0d3e",
+    "revision_date": "2021-12-25T20:08:17+01:00",
+    "license": "Apache-2.0",
+    "license_file_sha": "d79119e3b68f5d8fb01bce69e82a05fefe93d392"
+  },
+  "api_reference": {
+    "product": "PowerDNS Authoritative Server HTTP API",
+    "base_path": "/api/v1",
+    "openapi_version": "0.0.20",
+    "specification": "https://raw.githubusercontent.com/PowerDNS/pdns/master/docs/http-api/openapi/authoritative-api-openapi.yaml",
+    "specification_revision": "3d17ec1fac0bcc81289b18a8dfa5f265b27e3563",
+    "verified_at": "2026-08-14"
+  }
+}

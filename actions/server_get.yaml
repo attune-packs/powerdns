@@ -1,0 +1,18 @@
+ref: powerdns.server_get
+label: "Get PowerDNS Server"
+description: "Get one PowerDNS server and its authoritative version information"
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: powerdns_action.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+default_execution_permission_set_refs: [standard]
+parameters:
+  credential_key: {type: string, description: "Attune Key containing PowerDNS API credentials", default: "powerdns.credentials", required: true}
+  server_id: {type: string, description: "PowerDNS server ID", default: localhost, required: true}
+output:
+  operation: {type: string, required: true}
+  result: {type: object, required: true}
+tags: [powerdns, server, discovery]

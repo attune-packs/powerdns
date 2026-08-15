@@ -1,0 +1,42 @@
+ref: powerdns.rrset_upsert
+label: "Replace PowerDNS RRset"
+description: "Idempotently replace the complete record list and TTL for one RRset using PowerDNS REPLACE semantics"
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: powerdns_action.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+default_execution_permission_set_refs: [standard]
+parameters:
+  credential_key: {type: string, description: "Attune Key containing PowerDNS API credentials", default: "powerdns.credentials", required: true}
+  server_id: {type: string, description: "PowerDNS server ID", default: localhost, required: true}
+  zone_id: {type: string, description: "Opaque zone ID returned by PowerDNS", required: true}
+  name: {type: string, description: "Absolute RRset owner name ending with a dot", required: true}
+  record_type: {type: string, description: "DNS record type", required: true}
+  ttl: {type: integer, description: "TTL in seconds", minimum: 1, maximum: 2147483647, required: true}
+  records:
+    type: array
+    description: "Complete desired record list; existing records not listed are removed"
+    required: true
+    min_items: 1
+    items:
+      type: object
+      required: [content]
+      properties:
+        content: {type: string}
+        disabled: {type: boolean, default: false}
+  comments:
+    type: array
+    description: "Complete desired comment list; omit to preserve comments, pass [] to remove all comments"
+    items:
+      type: object
+      required: [content]
+      properties:
+        content: {type: string}
+        account: {type: string}
+output:
+  operation: {type: string, required: true}
+  result: {type: object, required: true}
+tags: [powerdns, rrset, replace]

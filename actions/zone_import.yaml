@@ -1,0 +1,26 @@
+ref: powerdns.zone_import
+label: "Import PowerDNS Zone"
+description: "Create a missing zone from BIND-format text; refuses to overwrite an existing exact zone name"
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: powerdns_action.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+default_execution_permission_set_refs: [standard]
+parameters:
+  credential_key: {type: string, description: "Attune Key containing PowerDNS API credentials", default: "powerdns.credentials", required: true}
+  server_id: {type: string, description: "PowerDNS server ID", default: localhost, required: true}
+  name: {type: string, description: "Absolute new zone name ending with a dot", required: true}
+  zone_text: {type: string, description: "BIND-format zone text from PowerDNS export", required: true}
+  kind: {type: string, enum: [Native, Master, Producer, Consumer], default: Native}
+  dnssec: {type: boolean, description: "Enable DNSSEC signing after import"}
+  api_rectify: {type: boolean, description: "Automatically rectify after API changes"}
+  soa_edit_api: {type: string, description: "PowerDNS SOA-EDIT-API policy used for future serial updates"}
+  account: {type: string, description: "Backend account metadata"}
+  catalog: {type: string, description: "Catalog zone membership"}
+output:
+  operation: {type: string, required: true}
+  result: {type: object, required: true}
+tags: [powerdns, zone, import, restore]

@@ -1,0 +1,19 @@
+ref: powerdns.zone_export
+label: "Export PowerDNS Zone"
+description: "Export one zone through the current API as a BIND/AXFR-format string in structured JSON output"
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: powerdns_action.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+default_execution_permission_set_refs: [standard]
+parameters:
+  credential_key: {type: string, description: "Attune Key containing PowerDNS API credentials", default: "powerdns.credentials", required: true}
+  server_id: {type: string, description: "PowerDNS server ID", default: localhost, required: true}
+  zone_id: {type: string, description: "Opaque zone ID returned by PowerDNS", required: true}
+output:
+  operation: {type: string, required: true}
+  result: {type: object, required: true}
+tags: [powerdns, zone, export, backup]

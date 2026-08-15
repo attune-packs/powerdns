@@ -1,0 +1,12 @@
+This product includes an adaptation of the StackStorm Exchange PowerDNS pack,
+version 2.0.2, originally by Carlos and subsequently maintained by StackStorm
+Exchange contributors.
+
+Source: https://github.com/StackStorm-Exchange/stackstorm-powerdns
+Revision: 13879e0e66b29a466d82c1077a1d4abde69c0d3e
+License: Apache License 2.0
+
+The implementation, credential handling, HTTP transport, action contracts, and
+Attune component metadata have been substantially modified. The direct HTTP
+implementation was checked against the current PowerDNS Authoritative Server
+OpenAPI source at revision 3d17ec1fac0bcc81289b18a8dfa5f265b27e3563.

@@ -1,0 +1,17 @@
+ref: powerdns.server_list
+label: "List PowerDNS Servers"
+description: "Discover all servers exposed by the PowerDNS API (the Authoritative Server normally returns localhost)"
+enabled: true
+runner_type: python
+runtime_version: ">=3.10"
+entry_point: powerdns_action.py
+parameter_delivery: stdin
+parameter_format: json
+output_format: json
+default_execution_permission_set_refs: [standard]
+parameters:
+  credential_key: {type: string, description: "Attune Key containing PowerDNS API credentials", default: "powerdns.credentials", required: true}
+output:
+  operation: {type: string, required: true}
+  result: {type: object, required: true}
+tags: [powerdns, server, discovery]

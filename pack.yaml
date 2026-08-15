@@ -1,0 +1,46 @@
+ref: powerdns
+label: "PowerDNS Authoritative"
+description: "Safe PowerDNS Authoritative Server HTTP API actions for servers, zones, and RRsets"
+version: "0.1.0"
+author: "Attune; adapted from work by Carlos and StackStorm Exchange contributors"
+email: "support@attune.systems"
+system: false
+enabled: true
+
+conf_schema:
+  default_credential_key:
+    type: string
+    description: "Pack-owned Attune Key containing PowerDNS API credentials"
+    default: "powerdns.credentials"
+
+config:
+  default_credential_key: "powerdns.credentials"
+
+meta:
+  category: integration
+  documentation_url: "https://doc.powerdns.com/authoritative/http-api/"
+  repository_url: "https://github.com/attune-packs/powerdns"
+  source_version: "2.0.2 (13879e0e66b29a466d82c1077a1d4abde69c0d3e)"
+  source_revision: "13879e0e66b29a466d82c1077a1d4abde69c0d3e"
+  license: "Apache-2.0"
+  python_dependencies:
+    - "attune-sdk>=0.1.0"
+    - "requests>=2.32.0,<3.0.0"
+
+tags: [powerdns, dns, authoritative, integration]
+runtime_deps: [python]
+dependencies: []
+
+testing:
+  enabled: true
+  discovery:
+    method: directory
+    path: tests
+  runners:
+    python:
+      type: unittest
+      entry_point: tests/test_pack.py
+      timeout: 120
+      result_format: simple
+  min_pass_rate: 1.0
+  on_failure: block
