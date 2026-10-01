@@ -17,7 +17,7 @@ a small direct API v1 client.
   other IDs.
 - Zone and RRset names supplied as DNS names are absolute and end with `.`.
 
-Create the pack-owned Attune Key `powerdns.credentials` with an object value:
+Create the pack-owned Attune Key `pack.powerdns.credentials` with an object value:
 
 ```json
 {

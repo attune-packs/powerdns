@@ -11,10 +11,10 @@ conf_schema:
   default_credential_key:
     type: string
     description: "Pack-owned Attune Key containing PowerDNS API credentials"
-    default: "powerdns.credentials"
+    default: "pack.powerdns.credentials"
 
 config:
-  default_credential_key: "powerdns.credentials"
+  default_credential_key: "pack.powerdns.credentials"
 
 meta:
   category: integration

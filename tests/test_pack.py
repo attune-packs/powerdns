@@ -79,7 +79,7 @@ class MetadataContractTests(unittest.TestCase):
                     f"ref: powerdns.{name}", "runner_type: python", 'runtime_version: ">=3.10"',
                     "entry_point: powerdns_action.py", "parameter_delivery: stdin",
                     "parameter_format: json", "output_format: json",
-                    "default_execution_permission_set_refs: [standard]", 'default: "powerdns.credentials"',
+                    "default_execution_permission_set_refs: [standard]", 'default: "pack.powerdns.credentials"',
                     "operation: {type: string, required: true}", "result: {type: object, required: true}",
                 ):
                     self.assertIn(required, text)
@@ -277,7 +277,10 @@ class ClientTests(unittest.TestCase):
             "attune.api_client.api.secrets": fake_secrets,
         }
         with mock.patch.dict(sys.modules, modules):
-            self.assertEqual("secret", client._fetch_key("powerdns.credentials")["api_key"])
+            self.assertEqual("secret", client._fetch_key("pack.powerdns.credentials")["api_key"])
+        fake_secrets.get_key.sync_detailed.assert_called_once_with(
+            "pack.powerdns.credentials", client=fake_attune.context.client
+        )
 
 
 class EntryPointTests(unittest.TestCase):
